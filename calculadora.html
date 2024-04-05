@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="calculadora.css">
+    <script src="calculadora.js"></script>
+    <title>Calculadora</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0,
+user-scalable=0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+<div class="result-box">
+    <p id="expression"><span id="inputs"></span><span class="cursor">|</span></p>
+    <p id="result"></p>
+    <div id="actions">
+        <span class="material-symbols-outlined" id="mode" onpointerup="switchTheme()"></span>
+        <span class="material-symbols-outlined" id="backspace" onpointerup="pressDelete()">backspace</span>
+    </div>
+</div>
+<div class="button-box">
+    <div class="row" id="row0">
+        <span class="button special" id="clear" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressClear();">C</span>
+        <span class="button special" id="brackets" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressBrackets()">(&thinsp;)</span>
+        <span class="button special symbol" id="percent" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressPercent()">%</span>
+        <span class="button special symbol" id="divide" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressOperator('&divide;')">&divide;</span>
+    </div>
+    <div class="row" id="row1">
+        <span class="button number" id="7" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressNumber(7)">7</span>
+        <span class="button number" id="8" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressNumber(8)">8</span>
+        <span class="button number" id="9" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressNumber(9)">9</span>
+        <span class="button special symbol" id="times" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressOperator('&times;')">&times;</span>
+    </div>
+    <div class="row" id="row2">
+        <span class="button number" id="4" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressNumber(4)">4</span>
+        <span class="button number" id="5" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressNumber(5)">5</span>
+        <span class="button number" id="6" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressNumber(6)">6</span>
+        <span class="button special symbol" id="minus" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressOperator('-')">-</span>
+    </div>
+    <div class="row" id="row3">
+        <span class="button number" id="1" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressNumber(1)">1</span>
+        <span class="button number" id="2" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressNumber(2)">2</span>
+        <span class="button number" id="3" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressNumber(3)">3</span>
+        <span class="button special symbol" id="plus" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressOperator('+')">+</span>
+    </div>
+    <div class="row" id="row4">
+        <span class="button" id="change_sign" onpointerdown="pressedStyle(this.id);" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressChangeSign()">+/-</span>
+        <span class="button number" id="0" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressNumber(0)">0</span>
+        <span class="button" id="dot" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressDot()">.</span>
+        <span class="button special symbol" id="equals" onpointerdown="pressedStyle(this.id)" onpointerleave="notPressedStyle(this.id)" onpointerup="notPressedStyle(this.id); pressEquals()">=</span>
+    </div>
+
+</div>
+<div id="toast">
+</div>
+</body>
+</html>
