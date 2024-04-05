@@ -163,9 +163,13 @@ body, html {
     color: var(--highlights-color);
     -webkit-user-select: none;
     user-select: none;
+    margin: -1rem;
+    padding: 1rem;
 }
 
 #mode:before {
+    margin: -1rem;
+    padding: 1rem;
     color: var(--secondary-font-color);
     content: var(--other-mode);
 }
