@@ -163,13 +163,13 @@ body, html {
     color: var(--highlights-color);
     -webkit-user-select: none;
     user-select: none;
-    margin: -1rem;
-    padding: 1rem;
+    margin: -1.5rem;
+    padding: 1.5rem;
 }
 
 #mode:before {
-    margin: -1rem;
-    padding: 1rem;
+    margin: -1.5rem;
+    padding: 1.5rem;
     color: var(--secondary-font-color);
     content: var(--other-mode);
 }
