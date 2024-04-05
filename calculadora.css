@@ -129,6 +129,8 @@ body, html {
     color: var(--cursor-color);
     font-weight: lighter;
     animation: blink 1s infinite;
+    -webkit-user-select: none;
+    user-select: none;
 }
 @keyframes blink {
     0% {
