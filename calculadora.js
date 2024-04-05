@@ -99,7 +99,7 @@ function pressBrackets(){
     let openingBrackets = (expression.match(/\(/g)||[]).length
     let closingBrackets = (expression.match(/\)/g)||[]).length
     if (expression.at(-1)==='('||openingBrackets === closingBrackets){
-        if (/^[\d.]$/g.test(expression.at(-1))) pressOperator("&times;")
+        if (/^[\d.%]$/g.test(expression.at(-1))) pressOperator("&times;")
         document.getElementById('inputs').innerHTML = document.getElementById('inputs').innerHTML + '(';
     } else {
         document.getElementById('inputs').innerHTML = document.getElementById('inputs').innerHTML + ')';
