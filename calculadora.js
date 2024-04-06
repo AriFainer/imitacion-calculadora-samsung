@@ -86,7 +86,7 @@ function pressNumber(n){
 function pressOperator(operator){
     setStyles()
     let expression = document.getElementById('inputs').innerHTML;
-    if (expression.length===0) return
+    if (expression.length===0||/[+-]/.test(expression)) return
     if (expression.at(-1)==="("){
         if(operator==="+"||operator==="-") document.getElementById('inputs').innerHTML = expression + operator
         return
