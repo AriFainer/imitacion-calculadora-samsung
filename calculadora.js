@@ -29,8 +29,10 @@ function recalculateResult(){
             + expression.slice(match.index+match[0].length + sliding)
         sliding += 5;
     });
+    //adds mising closing brackets
+    expression = expression + ")".repeat((expression.match(/\(/g)||[]).length - (expression.match(/\)/g)||[]).length )
     // console.log(expression)
-    if (!/^\d+(\.\d*)?$/g.test(expression)&&(expression.match(/\(/g)||[]).length === (expression.match(/\)/g)||[]).length) {
+    if (!/^\d+(\.\d*)?$/g.test(expression)) {
         let result = Function("return " + expression)()
         if (!isFinite(result)) return clearResult();
         let number = result.toString().split(".")
