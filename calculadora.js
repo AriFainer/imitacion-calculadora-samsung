@@ -120,7 +120,7 @@ function pressDot(){
     setStyles()
     let expression = document.getElementById('inputs').innerHTML;
     let pattern = /\d+(\.\d*)?/g
-    if (/[%.]$/.test(expression)) return
+    if (/[%.e]$/.test(expression)) return
     if (!/^\d$/g.test(expression.at(-1))){
         pressNumber(0);
         expression+=0;
