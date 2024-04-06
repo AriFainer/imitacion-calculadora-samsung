@@ -84,7 +84,12 @@ function pressNumber(n){
 function pressOperator(operator){
     setStyles()
     let expression = document.getElementById('inputs').innerHTML;
+    console.log(operator, expression)
     if (expression.length===0) return
+    if (expression.at(-1)==="("){
+        if(operator==="+"||operator==="-") document.getElementById('inputs').innerHTML = expression + operator
+        return
+    }
     let pattern = /​<span[^<]+>[^<]+<\/span>$/g
     if (!pattern.test(expression)){
         document.getElementById('inputs').innerHTML = expression + '&ZeroWidthSpace;<span class="operator_char">' + operator + '</span>'
