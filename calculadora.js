@@ -170,19 +170,18 @@ function pressEquals(){
 function pressChangeSign(){
     setStyles()
     let expression = document.getElementById('inputs').innerHTML;
-    let pattern = /\(​<span[^<]+>-<\/span>[\d,]+(\.\d*)?%?$/g
+    let pattern = /\(-[\d,]+(\.\d*)?%?$/g
     let number = expression.match(/[\d,]+(\.\d*)?%?$/g)[0]
     if(pattern.test(expression)){
         expression = expression.replaceAll(pattern,number)
-        recalculateResult()
     } else {
         if (number || /0(\.0*)?/g.test(number)) {
             expression = expression.replace(/[\d,]+(\.\d*)?%?$/g,
-                "(&ZeroWidthSpace;<span class=\"operator_char\">-</span>" + number)
-            clearResult();
+                "(-" + number)
         }
     }
     document.getElementById('inputs').innerHTML = expression
+    recalculateResult()
 
 }
 
