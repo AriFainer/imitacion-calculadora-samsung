@@ -113,7 +113,7 @@ function pressDot(){
     setStyles()
     let expression = document.getElementById('inputs').innerHTML;
     let pattern = /\d+(\.\d*)?/g
-    if (expression.at(-1)==='%') return
+    if (/[%.]$/.test(expression)) return
     if (!/^\d$/g.test(expression.at(-1))){
         pressNumber(0);
         expression+=0;
@@ -153,6 +153,11 @@ function pressEquals(){
         document.getElementById('inputs').innerHTML = document.getElementById('result').innerText;
         clearResult();
         document.getElementById('inputs').style.color = "var(--highlights-color)"
+    } else {
+        if(!/^\d+(\.\d*)?$/.test(document.getElementById('inputs').innerHTML)){
+            document.getElementById('inputs').style.setProperty("--highlights-color", "var(--red)")
+            document.getElementById('inputs').style.color = "var(--highlights-color)"
+        }
     }
 }
 
@@ -189,6 +194,7 @@ function pressPercent() {
 
 function setStyles(isDeleting=false){
     document.getElementById('inputs').style.color = "var(--font-color)"
+    document.getElementById('inputs').style.removeProperty("--highlights-color")
     document.getElementById('expression').style.fontSize = 2 -
         0.5*(document.getElementById('inputs').innerText.length>12+isDeleting) + "rem"
 }
