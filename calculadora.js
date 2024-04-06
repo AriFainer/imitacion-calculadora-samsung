@@ -171,13 +171,13 @@ function pressEquals(){
 function pressChangeSign(){
     setStyles()
     let expression = document.getElementById('inputs').innerHTML;
-    let pattern = /\(-[\d,]+(\.\d*)?%?$/g
-    let number = expression.match(/[\d,]+(\.\d*)?%?$/g)[0]
+    let pattern = /\(-[\d,]+(\.\d*)?(e[+-][\d,]+(\.\d*)?)?%?$/g
+    let number = expression.match(/[\d,]+(\.\d*)?(e[+-][\d,]+(\.\d*)?)?%?$/g)[0]
     if(pattern.test(expression)){
         expression = expression.replaceAll(pattern,number)
     } else {
         if (number || /0(\.0*)?/g.test(number)) {
-            expression = expression.replace(/[\d,]+(\.\d*)?%?$/g,
+            expression = expression.replace(/[\d,]+(\.\d*)?(e[+-][\d,]+(\.\d*)?)?%?$/g,
                 "(-" + number)
         }
     }
