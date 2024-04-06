@@ -69,6 +69,7 @@ function pressNumber(n){
     setStyles()
     let expression = document.getElementById('inputs').innerHTML;
     if (expression.at(-1)==='%') return
+    if (expression.at(-1)===')') pressOperator("&times;")
     if (/^[\d.]$/g.test(expression.at(-1)) && [...expression.replaceAll(",","").matchAll(/[\d,]+(\.\d*)?/g)].at(-1)[0].replace(".","").length>=15) {
         return showToast("No es posible introducir más de 15 dígitos")
     }
@@ -98,8 +99,9 @@ function pressBrackets(){
     let expression = document.getElementById('inputs').innerHTML;
     let openingBrackets = (expression.match(/\(/g)||[]).length
     let closingBrackets = (expression.match(/\)/g)||[]).length
-    if (expression.at(-1)==='('||openingBrackets === closingBrackets){
-        if (/^[\d.%]$/g.test(expression.at(-1))) pressOperator("&times;")
+    let pattern = /​<span[^<]+>[^<]+<\/span>$/g
+    if (expression.at(-1)==='('||openingBrackets === closingBrackets||pattern.test(expression)){
+        if (/^[\d.%)]$/g.test(expression.at(-1))) pressOperator("&times;")
         document.getElementById('inputs').innerHTML = document.getElementById('inputs').innerHTML + '(';
     } else {
         document.getElementById('inputs').innerHTML = document.getElementById('inputs').innerHTML + ')';
@@ -113,15 +115,15 @@ function pressDot(){
     let pattern = /\d+(\.\d*)?/g
     if (expression.at(-1)==='%') return
     if (!/^\d$/g.test(expression.at(-1))){
-        expression += '0';
+        pressNumber(0);
+        expression+=0;
     }
     if (![...expression.matchAll(pattern)].at(-1)[0].includes('.')) {
-        document.getElementById('inputs').innerHTML = expression + ".";
+        document.getElementById('inputs').innerHTML = document.getElementById('inputs').innerHTML + ".";
     }
 }
 
 function pressDelete(){
-    setStyles()
     let expression = document.getElementById('inputs').innerHTML
     let pattern = /​<span[^<]+>[^<]+<\/span>$/g
     if (pattern.test(expression)){
@@ -135,6 +137,7 @@ function pressDelete(){
             clearResult();
         }
     }
+    setStyles(true)
     setSeparators();
 }
 
@@ -184,10 +187,10 @@ function pressPercent() {
 
 }
 
-function setStyles(){
+function setStyles(isDeleting=false){
     document.getElementById('inputs').style.color = "var(--font-color)"
     document.getElementById('expression').style.fontSize = 2 -
-        0.5*(document.getElementById('inputs').innerText.length>12) + "rem"
+        0.5*(document.getElementById('inputs').innerText.length>12+isDeleting) + "rem"
 }
 
 function pressedStyle(id){
