@@ -159,6 +159,11 @@ body, html {
     user-select: none;
     margin: -1.5rem;
     padding: 1.5rem;
+    font-size: 1.5rem;
+}
+
+#mode {
+    font-size: 1.5rem;
 }
 
 #mode:before {
