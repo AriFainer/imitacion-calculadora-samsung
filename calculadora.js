@@ -86,9 +86,10 @@ function pressNumber(n){
 function pressOperator(operator){
     setStyles()
     let expression = document.getElementById('inputs').innerHTML;
-    if (expression.length===0||/[+-]/.test(expression)) return
+    if (expression.length===0||/[+-]$/.test(expression)) return
     if (expression.at(-1)==="("||expression.at(-1)==="e"){
         if(operator==="+"||operator==="-") document.getElementById('inputs').innerHTML = expression + operator
+        console.log("ay, no")
         return
     }
     let pattern = /​<span[^<]+>[^<]+<\/span>$/g
@@ -96,6 +97,7 @@ function pressOperator(operator){
         document.getElementById('inputs').innerHTML = expression + '&ZeroWidthSpace;<span class="operator_char">' + operator + '</span>'
         clearResult();
     } else {
+        console.log("hola")
         document.getElementById('inputs').innerHTML = expression.replace(pattern,'&ZeroWidthSpace;<span class="operator_char">' + operator + '</span>');
     }
 }
