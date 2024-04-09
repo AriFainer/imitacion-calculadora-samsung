@@ -163,7 +163,7 @@ function pressEquals(){
         clearResult();
         document.getElementById('inputs').style.color = "var(--highlights-color)"
     } else {
-        if(!/^\d+(\.\d*)?$/.test(document.getElementById('inputs').innerHTML)){
+        if(!/^[\d,]+(\.\d*)?$/.test(document.getElementById('inputs').innerHTML)){
             document.getElementById('inputs').style.setProperty("--highlights-color", "var(--red)")
             document.getElementById('inputs').style.color = "var(--highlights-color)"
         }
