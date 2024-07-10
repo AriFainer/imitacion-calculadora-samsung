@@ -15,8 +15,8 @@ function recalculateResult(){
     let expression = document.getElementById('inputs').innerHTML
         .replaceAll(",","")
         .replaceAll("×","*")
-        .replaceAll(/e(?=[+-])/g,"*10**") //replace all e's with the equivalent *10^
-        .replaceAll(/[^.0-9*÷+\-()%]/g,"")
+        // .replaceAll(/e(?=[+-])/g,"*10**") //replace all e's with the equivalent *10^
+        .replaceAll(/[^.0-9*÷+\-()%e]|e(?![+-])/g, "")
         .replaceAll("÷","/")
     let pattern = /\d+(\.\d*)?%/g
     let sliding = 0
@@ -90,7 +90,6 @@ function pressOperator(operator){
     if (expression.length===0||/[+-]$/.test(expression)) return
     if (expression.at(-1)==="("||expression.at(-1)==="e"){
         if(operator==="+"||operator==="-") document.getElementById('inputs').innerHTML = expression + operator
-        console.log("ay, no")
         return
     }
     let pattern = /​<span[^<]+>[^<]+<\/span>$/g
@@ -98,7 +97,6 @@ function pressOperator(operator){
         document.getElementById('inputs').innerHTML = expression + '&ZeroWidthSpace;<span class="operator_char">' + operator + '</span>'
         clearResult();
     } else {
-        console.log("hola")
         document.getElementById('inputs').innerHTML = expression.replace(pattern,'&ZeroWidthSpace;<span class="operator_char">' + operator + '</span>');
     }
 }
