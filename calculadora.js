@@ -9,6 +9,7 @@ function showToast(message){
 }
 
 const formatter = new Intl.NumberFormat('en-US');
+const exact_math = window.exactMath
 
 function recalculateResult(){
     let expression = document.getElementById('inputs').innerHTML
@@ -33,7 +34,7 @@ function recalculateResult(){
     expression = expression + ")".repeat((expression.match(/\(/g)||[]).length - (expression.match(/\)/g)||[]).length )
     // console.log(expression)
     if (!/^\d+(\.\d*)?$/g.test(expression)) {
-        let result = Function("return " + expression)()
+        let result = exact_math.formula(expression)
         if (!isFinite(result)) return clearResult();
         let number = result.toString().split(".")
         if (!number[0].includes("e")) number[0] = formatter.format(parseInt(number[0]));
